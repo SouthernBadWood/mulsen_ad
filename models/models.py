@@ -4,7 +4,7 @@ import timm
 from timm.models.layers import DropPath, trunc_normal_
 from pointnet2_ops import pointnet2_utils
 from knn_cuda import KNN
-
+from torch.utils.checkpoint import checkpoint
 
 class Model(torch.nn.Module):
 
@@ -37,7 +37,7 @@ class Model(torch.nn.Module):
         x = self.rgb_backbone._pos_embed(x)
         x = self.rgb_backbone.norm_pre(x)
         if self.rgb_backbone.grad_checkpointing and not torch.jit.is_scripting():
-            x = checkpoint_seq(self.blocks, x)
+            x = checkpoint(self.blocks, x)
         else:
             x = self.rgb_backbone.blocks(x)
         x = self.rgb_backbone.norm(x)
