@@ -37,6 +37,7 @@ import os
 from datetime import datetime
 import random
 import numpy as np
+
 def run_3d_ads(args):
     if args.random_state is not None:
         set_random_seed(args.random_state)
