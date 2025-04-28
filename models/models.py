@@ -17,9 +17,9 @@ class Model(torch.nn.Module):
         if out_indices:
             kwargs.update({'out_indices': out_indices})
 
-        ## RGB backbone
-        self.rgb_backbone = timm.create_model(model_name=rgb_backbone_name, pretrained=False,checkpoint_path="/home/lc/.cache/huggingface/hub/models--timm--vit_base_patch8_224.dino/pytorch_model.bin",**kwargs)
-        
+        ## RGB backbone 这里的问题就是问题来源,先尝试将pretrained修改为True
+        self.rgb_backbone = timm.create_model(model_name=rgb_backbone_name, pretrained=True)
+        print('rgb_backbone模型成功加载')
         ## XYZ backbone
         if xyz_backbone_name=='Point_MAE':
             self.xyz_backbone=PointTransformer(group_size=group_size, num_group=num_group)
