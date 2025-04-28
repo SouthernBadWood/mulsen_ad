@@ -1,0 +1,5 @@
+# 忽略整个数据集文件夹
+datasets/
+
+#忽略整个checkpoints文件夹中的内容
+checkpoints/
