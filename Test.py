@@ -44,7 +44,6 @@ def run_3d_ads(args):
 
     METHOD_NAMES = [args.method_name]
 
-
     all_metrics_df = pd.DataFrame()
 
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -100,7 +99,6 @@ def set_random_seed(seed=42):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some integers.')
-
     parser.add_argument('--method_name', default='PC+RGB+Infra+gating', type=str, 
                         help='Anomaly detection modal name.')
     parser.add_argument('--memory_bank', default='multiple', type=str,
@@ -147,7 +145,5 @@ if __name__ == '__main__':
                         help='Save predicts results.')
     parser.add_argument('--output_dir', default='./output_dir',
                         help='path where to save, empty for no saving')
-
-
     args = parser.parse_args()
     run_3d_ads(args)
